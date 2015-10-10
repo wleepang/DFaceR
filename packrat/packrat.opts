@@ -1,0 +1,16 @@
+auto.snapshot: TRUE
+use.cache: FALSE
+print.banner.on.startup: auto
+vcs.ignore.lib: TRUE
+vcs.ignore.src: FALSE
+external.packages:
+    RCurl
+    PKI
+    rstudioapi
+    yaml
+    rsconnect
+    knitr
+    rmarkdown
+local.repos: 
+load.external.packages.on.startup: TRUE
+ignored.packages: 
