@@ -18,14 +18,14 @@ shinyServer(function(input, output, session) {
 
         if (pager$current_page > pager$total_pages) {
           pager$current_page = pager$total_pages
-          session$sendInputMessage('pager_ui__page_current', list(value = pager$current_page))
+          updateNumericInput(session, 'pager_ui__page_current', value = pager$current_page)
         }
 
         row_starts = seq(1, nrow(data$clean), by = input$num_faces_per_page)
         row_stops  = c(row_starts[-1] - 1, nrow(data$clean))
         pager$page_rows = mapply(`:`, row_starts, row_stops, SIMPLIFY=F)
 
-        session$sendInputMessage('pager_ui__pages_total', list(value = pager$total_pages))
+        updateNumericInput(session, 'pager_ui__pages_total', value = pager$total_pages)
       }
     }
   )
