@@ -7,10 +7,11 @@ shinyUI(pageWithSidebar(
     title = "DFaceR: Visualize multidimensional data with faces"
   ),
 
-  # Sidebar with a slider input for number of bins
   sidebarPanel(
     width = 3,
 
+    # data selection input, either a built-in set (mtcars, iris)
+    # or an uploaded csv
     helpText('1. choose sample data or upload your own'),
     selectInput('sel_dataset', 'Dataset', choices=c('mtcars', 'iris', 'upload ...'='upload')),
     conditionalPanel(
@@ -18,6 +19,8 @@ shinyUI(pageWithSidebar(
       fileInput('file_data', 'Data File', accept = 'text/csv')
     ),
 
+    # user selected labels, either rownames (if they exist)
+    # or paste()'d variables
     helpText('2. select how faces are labeled'),
     selectInput('sel_labels_from', 'labels from', choices=c('row names', 'variables ...'='variables')),
     conditionalPanel(
@@ -49,11 +52,8 @@ shinyUI(pageWithSidebar(
     verbatimTextOutput('table_face_mappings')
   ),
 
-  # Show a plot of the generated distribution
   mainPanel(
-    div(
-      pagerInputUI('pager_ui')
-    ),
+    pagerInputUI('pager_ui'),
     plotOutput("plot_faces")
   )
 ))
